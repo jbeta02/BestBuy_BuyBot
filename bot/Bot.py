@@ -15,10 +15,10 @@ class BuyBot:
         self.__PRODUCT = "https://www.bestbuy.com/site/nvidia-geforce-rtx-3080-10gb-gddr6x-pci-express-4-0-graphics-card-titanium-and-black/6429440.p?acampID=0&cmp=RMX&loc=Hatch&ref=198&skuId=6429440"
         # self.__PRODUCT = "https://www.bestbuy.com/site/razer-viper-mini-wired-optical-gaming-mouse-with-chroma-rgb-lighting-black/6402115.p?skuId=6402115"
 
-        self.__EMAIL = "jbeta02@gmail.com" #TODO enter email
-        self.__PASSWORD = "JBeta20041337" #TODO enter password
+        self.__EMAIL = ""
+        self.__PASSWORD = ""
 
-        self.__PAYMENt_INFO = "1111222233334444" #TODO enter credit or debit card num
+        self.__PAYMENT_INFO = ""
 
         self.is_in_stock = False
 
@@ -34,9 +34,14 @@ class BuyBot:
         options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/91.0.4472.77 Safari/537.36")
 
         # init browser driver
-        DRIVER_PATH = "C:\\Users\\Acme\\Desktop\\webDriver\\chromedriver.exe" #TODO enter driver path
+        DRIVER_PATH = input("Enter chromedriver.exe Path: ") #"C:\\Users\\Acme\\Desktop\\webDriver\\chromedriver.exe" #TODO enter driver path
         self.driver = webdriver.Chrome(options=options, executable_path=DRIVER_PATH)
 
+
+    def set_up(self):
+        self.__EMAIL = input("Enter Email: ")
+        self.__PASSWORD = input("Enter Password: ")
+        self.__PAYMENT_INFO = input("Enter Credit or Debit Card Number: ")
 
     def login_in(self):
         self.driver.get("https://www.bestbuy.com/identity/global/signin")
@@ -172,7 +177,7 @@ class BuyBot:
 
         # fill payment info
         payment_input = self.driver.find_element_by_id("optimized-cc-card-number")
-        payment_input.send_keys(self.__PAYMENt_INFO)
+        payment_input.send_keys(self.__PAYMENT_INFO)
 
         print("filled payment info")
 
@@ -185,6 +190,8 @@ class BuyBot:
         place_order.click()
 
         print("order placed")
+
+        sleep(60)
 
         raise SystemExit()
 
