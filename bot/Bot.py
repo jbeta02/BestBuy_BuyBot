@@ -1,3 +1,5 @@
+import os
+
 from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver import ActionChains
@@ -12,8 +14,8 @@ class BuyBot:
     def __init__(self):
 
         # below are private variables
+        #TODO enter product if not 3080
         self.__PRODUCT = "https://www.bestbuy.com/site/nvidia-geforce-rtx-3080-10gb-gddr6x-pci-express-4-0-graphics-card-titanium-and-black/6429440.p?acampID=0&cmp=RMX&loc=Hatch&ref=198&skuId=6429440"
-        # self.__PRODUCT = "https://www.bestbuy.com/site/sandisk-cruzer-16gb-usb-2-0-flash-drive-black/9226875.p?skuId=9226875"
         self.__PRODUCT_NAME = ""
 
         self.__EMAIL = ""
@@ -27,7 +29,7 @@ class BuyBot:
         self.is_in_stock = False
 
         self.__checking_counter = 0
-        self.__counter_mark = 1 # 3600 is equal to 1 hour in sec but bc I have a 2 sec delay this will be equal to 2 hours
+        self.__counter_mark = 1800 # 1800 is more than 1 hour
 
         self.__item_count = "2" #TODO enter item count if not 2
 
