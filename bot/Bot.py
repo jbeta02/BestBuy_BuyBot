@@ -14,8 +14,7 @@ class BuyBot:
     def __init__(self):
 
         # below are private variables
-        #TODO enter product if not 3080
-        self.__PRODUCT = "https://www.bestbuy.com/site/nvidia-geforce-rtx-3080-10gb-gddr6x-pci-express-4-0-graphics-card-titanium-and-black/6429440.p?acampID=0&cmp=RMX&loc=Hatch&ref=198&skuId=6429440"
+        self.__PRODUCT = ""
         self.__PRODUCT_NAME = ""
 
         self.__EMAIL = ""
@@ -31,7 +30,7 @@ class BuyBot:
         self.__checking_counter = 0
         self.__counter_mark = 1800 # 1800 is more than 1 hour
 
-        self.__item_count = "2" #TODO enter item count if not 2
+        self.__item_count = "1" #TODO enter item count if not 1
 
         self.__pass = False
 
@@ -49,6 +48,7 @@ class BuyBot:
 
 
     def set_up(self):
+        self.__PRODUCT = input("Enter Product URL: ")
         self.__EMAIL = input("Enter Email: ")
         self.__PASSWORD = input("Enter Password: ")
         self.__PAYMENT_CARD_NUMBER = input("Enter Credit or Debit Card Number: ")
@@ -145,12 +145,12 @@ class BuyBot:
             WebDriverWait(self.driver, 60).until(
                 lambda x: self.driver.find_element_by_xpath("//select[@class='c-dropdown v-medium fluid-item__quantity']").is_displayed()
             )
-            print(self.TAG + "successfully put 2 items into cart")
+            print(self.TAG + "successfully put " + self.__item_count + " items into cart")
             self.__pass = True
 
         except TimeoutException:
             # try again
-            print(self.TAG + "failed to add 2 items to cart, will just get 1") # if fail don't try again and just buy one
+            print(self.TAG + "failed to add " + self.__item_count + " items to cart, will just get 1") # if fail don't try again and just buy one
             self.__pass = False
 
         if self.__pass == True:
