@@ -33,6 +33,8 @@ class BuyBot:
 
         self.__pass = False
 
+        self.TAG = "BuyBot: "
+
         options = Options()
         options.headless = True
         options.add_argument("--window-size=1920,1200")
@@ -57,7 +59,7 @@ class BuyBot:
         try:
             WebDriverWait(self.driver, 30).until(lambda x: "Sign In to Best Buy" in self.driver.title)
         except:
-            print("getting to website to too long, trying again")
+            print(self.TAG + "getting to website to too long, trying again")
             self.login_in()
 
         # find element by class name
@@ -77,9 +79,9 @@ class BuyBot:
             sleep(3)
         except TimeoutException:
             # login failed try again
-            print("login failed, trying again")
+            print(self.TAG + "login failed, trying again")
             self.login_in()
-        print("successfully logged in")
+        print(self.TAG + "successfully logged in")
 
 
     def in_stock(self):
@@ -93,12 +95,12 @@ class BuyBot:
             add_to_cart_button = None
 
         if self.__checking_counter >= self.__counter_mark:
-            print(".") # dot will represent about 2 hours but will always be more then bc of random delay
+            print(self.TAG + ".") # dot will represent about 2 hours but will always be more then bc of random delay
             self.__checking_counter = 0
 
         if add_to_cart_button != None and add_to_cart_button.is_enabled():
             # if add_to_cart_button exists and it is enabled then it is in stock
-            print("is IN stock")
+            print(self.TAG + "is IN stock")
             self.is_in_stock = True
             return True
         else:
@@ -109,13 +111,13 @@ class BuyBot:
             return False
 
     def add_to_cart(self):
-        print("checking if in stock")
+        print(self.TAG + "checking if in stock")
 
         while self.is_in_stock == False:
             self.in_stock()
 
         if self.is_in_stock == True:
-            print("adding to cart")
+            print(self.TAG + "adding to cart")
 
             self.driver.get(self.__PRODUCT)
 
@@ -127,10 +129,10 @@ class BuyBot:
                 WebDriverWait(self.driver, 90).until(
                     lambda x: self.driver.find_element_by_class_name("dot").is_displayed()
                 )
-                print("successfully added to cart")
+                print(self.TAG + "successfully added to cart")
             except TimeoutException:
                 # failed try again
-                print("adding to cart failed, trying again")
+                print(self.TAG + "adding to cart failed, trying again")
                 self.add_to_cart()
 
 
@@ -141,12 +143,12 @@ class BuyBot:
             WebDriverWait(self.driver, 60).until(
                 lambda x: self.driver.find_element_by_xpath("//select[@class='c-dropdown v-medium fluid-item__quantity']").is_displayed()
             )
-            print("successfully put 2 items into cart")
+            print(self.TAG + "successfully put 2 items into cart")
             self.__pass = True
 
         except TimeoutException:
             # try again
-            print("failed to add 2 items to cart, will just get 1") # if fail don't try again and just buy one
+            print(self.TAG + "failed to add 2 items to cart, will just get 1") # if fail don't try again and just buy one
             self.__pass = False
 
         if self.__pass == True:
@@ -168,7 +170,7 @@ class BuyBot:
             )
         except TimeoutException:
             # failed try again
-            print("going to checkout failed, trying again")
+            print(self.TAG + "going to checkout failed, trying again")
             self.go_to_checkout()
 
 
@@ -177,7 +179,7 @@ class BuyBot:
 
         self.driver.find_element_by_xpath("//button[@class='btn btn-lg btn-block btn-secondary'][1]").click()
 
-        print("filled shipping info")
+        print(self.TAG + "filled shipping info")
 
         try:
             WebDriverWait(self.driver, 90).until(
@@ -186,7 +188,7 @@ class BuyBot:
             )
         except TimeoutException:
             # failed try again
-            print("filled shipping failed, trying again")
+            print(self.TAG + "filled shipping failed, trying again")
             self.fill_shipping()
 
 
@@ -207,7 +209,7 @@ class BuyBot:
         code_selector = self.driver.find_element_by_id("credit-card-cvv")
         code_selector.send_keys(self.__PAYMENT_CODE)
 
-        print("filled payment info")
+        print(self.TAG + "filled payment info")
 
         sleep(1)
 
@@ -217,7 +219,11 @@ class BuyBot:
         place_order = self.driver.find_element_by_xpath("//button[@class='btn btn-lg btn-block btn-primary'][1]")
         place_order.click()
 
-        print("order placed")
+        print(self.TAG + "order placed")
+
+        print(self.TAG + "check account to double check")
+
+        print(self.TAG + "wait for program to close")
 
         sleep(120)
 
