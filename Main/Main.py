@@ -13,7 +13,7 @@ def main():
     BuyBot.go_to_checkout()
     BuyBot.fill_shipping()
     BuyBot.fill_payment()
-    #BuyBot.place_order()
+    # #BuyBot.place_order()
 
 
 # RUN CODE
