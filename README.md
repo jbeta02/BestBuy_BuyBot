@@ -14,7 +14,7 @@ A bot that can buy any item on BestBuy.com
 ### Setup
 1. Make a BestBuy account
 2. Go to account settings and add a shipping address then set it as default (bot won't work without this step)
-3. Download Chrome (if you don't have it) and chrome driver at https://sites.google.com/a/chromium.org/chromedriver/downloads, make sure the one you download correstponds to your Chrome version (you can check your version in Chome settings > about Chrome > for me its 91.------)
+3. Download Chrome (if you don't have it) and chrome driver at https://sites.google.com/chromium.org/driver/downloads, make sure the one you download correstponds to your Chrome version (you can check your version in Chome settings > about Chrome > for me its 91.------)
 4. Keep track of where you download the chrome driver, you will need the PATH of the chromedriver.exe for later
 5. Clone this repository
 
