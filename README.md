@@ -39,6 +39,6 @@ This program is setup to run as an exe file so user does not have to worry about
 8. Follow the "How to Use" section to learn to how run the program
 
 
-## Running On Raspberry Pi
+## Running On Raspberry Pi W!ith Raspbian
 1. Run: sudo apt install chromium-chromedriver
 2. Remove: self.driver = webdriver.Chrome(options=options, executable_path=DRIVER_PATH). Replace with: self.driver = webdriver.Chrome(options=options)
