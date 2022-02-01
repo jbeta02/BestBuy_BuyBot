@@ -37,3 +37,8 @@ This program is setup to run as an exe file so user does not have to worry about
 6. In terminal, enter: python setup.py py2exe
 7. The above command will make a new dist folder with an updated Main.exe with the code you wrote
 8. Follow the "How to Use" section to learn to how run the program
+
+
+## Running On Raspberry Pi
+1. Run: sudo apt install chromium-chromedriver
+2. Remove: self.driver = webdriver.Chrome(options=options, executable_path=DRIVER_PATH). Replace with: self.driver = webdriver.Chrome(options=options)
