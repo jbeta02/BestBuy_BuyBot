@@ -14,7 +14,7 @@ A bot that can buy any item on BestBuy.com
 ### Setup
 1. Make a BestBuy account
 2. Go to account settings and add a shipping address then set it as default (bot won't work without this step)
-3. Download Chrome (if you don't have it) and chrome driver at https://sites.google.com/a/chromium.org/chromedriver/downloads, make sure the one you download correstponds to your Chrome version (you can check your version in Chome settings > about Chrome > for me its 91.------)
+3. Download Chrome (if you don't have it) and chrome driver at https://sites.google.com/chromium.org/driver/downloads, make sure the one you download correstponds to your Chrome version (you can check your version in Chome settings > about Chrome > for me its 91.------)
 4. Keep track of where you download the chrome driver, you will need the PATH of the chromedriver.exe for later
 5. Clone this repository
 
@@ -37,3 +37,8 @@ This program is setup to run as an exe file so user does not have to worry about
 6. In terminal, enter: python setup.py py2exe
 7. The above command will make a new dist folder with an updated Main.exe with the code you wrote
 8. Follow the "How to Use" section to learn to how run the program
+
+
+## Running On Raspberry Pi With Raspbian
+1. Run: sudo apt install chromium-chromedriver
+2. Remove: self.driver = webdriver.Chrome(options=options, executable_path=DRIVER_PATH). Replace with: self.driver = webdriver.Chrome(options=options)
