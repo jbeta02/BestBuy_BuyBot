@@ -6,9 +6,7 @@ A bot that can buy any item on BestBuy.com
 * Check when an item is in stock
 * Add item to cart as soon as it is in stock
 * Change quanity of items in cart (in case your want more than one)
-* Go to checkout
-* Fill shipping and payment information
-* Place order
+* Notify User
 
 ## How To Setup and Usage
 ### Setup
