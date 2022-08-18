@@ -1,5 +1,5 @@
 # BestBuy_BuyBot
-A bot that can buy any item on BestBuy.com
+A bot that can track any item on BestBuy.com
 
 ## What Can It Do
 * Log in to your account
